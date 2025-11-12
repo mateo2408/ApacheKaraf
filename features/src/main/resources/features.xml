@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="message-demo-${project.version}"
+          xmlns="http://karaf.apache.org/xmlns/features/v1.6.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.6.0
+                              http://karaf.apache.org/xmlns/features/v1.6.0">
+
+    <!-- Feature para el API -->
+    <feature name="message-service-api" version="${project.version}" description="Message Service API">
+        <bundle>mvn:org.example/message-service-api/${project.version}</bundle>
+    </feature>
+
+    <!-- Feature para la implementación del servicio -->
+    <feature name="message-service-impl" version="${project.version}" description="Message Service Implementation">
+        <feature>message-service-api</feature>
+        <bundle>mvn:org.example/message-service-impl/${project.version}</bundle>
+    </feature>
+
+    <!-- Feature para el consumidor -->
+    <feature name="message-consumer" version="${project.version}" description="Message Consumer">
+        <feature>message-service-api</feature>
+        <bundle>mvn:org.example/message-consumer/${project.version}</bundle>
+    </feature>
+
+    <!-- Feature completa que instala todo -->
+    <feature name="message-demo" version="${project.version}" description="Complete Message Demo">
+        <feature>message-service-impl</feature>
+        <feature>message-consumer</feature>
+    </feature>
+
+</features>
+
